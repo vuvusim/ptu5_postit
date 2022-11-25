@@ -13,11 +13,14 @@ class Post(models.Model):
         on_delete=models.CASCADE,
         related_name="posts"
     )
-    creatade_at = models.DateTimeField(_("created at"), auto_now_add=True)
+    created_at = models.DateTimeField(_("created at"), auto_now_add=True)
 
     def __str__(self) -> str:
         return _("{title} by {user} posted at {created_at}").format(
             title=self.title,
             user=self.user,
-            created_at=self.creatade_at,
+            created_at=self.created_at,
         )
+
+    class Meta:
+        ordering = ('-created_at',)
